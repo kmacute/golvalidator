@@ -20,7 +20,12 @@ func ValidateStructs(s interface{}) map[string]string {
 			errors[fieldName] = error
 		}
 	}
-	return errors
+
+	if len(errors) > 0 {
+		return errors
+	}
+
+	return nil
 }
 
 func validateField(config string, fieldValue interface{}, fieldName string, refl reflect.Value) string {
