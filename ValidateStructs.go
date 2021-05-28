@@ -48,7 +48,6 @@ func validateField(config string, fieldValue interface{}, fieldName string, refl
 			if validatedField != "" {
 				errors = append(errors, validatedField)
 			}
-			fmt.Println(dataType)
 		}
 	}
 
@@ -110,7 +109,6 @@ func validate(validation []string, v reflect.Value, fieldValue interface{}, fiel
 		}
 
 	case "min":
-		fmt.Println(dataType)
 		switch dataType {
 		case "string":
 			minCharacterLength, _ := strconv.Atoi(validation[1])
