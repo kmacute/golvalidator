@@ -66,7 +66,7 @@ func Test(c *fiber.Ctx) error {
 {
     "errors": {
         "first_name": [
-            "The first name field is required when required with is present."
+            "The first name field is required when last name is present."
         ],
         "last_name": [
             "The last name must only contain letters.",
