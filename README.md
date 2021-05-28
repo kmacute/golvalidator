@@ -81,6 +81,7 @@ func Test(c *fiber.Ctx) error {
 ```
 
 ### Available Validation
+```
 alpha
 string
 numeric
@@ -110,5 +111,11 @@ ipv4
 ipv6
 url
 credit_card
+```
 
 ### Pending
+```
+Unique -> (Gorm Dependency)
+File Size
+File Extension
+```
