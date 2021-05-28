@@ -23,18 +23,18 @@ import "github.com/kmacute/golvalidator"
 package main
 
 import (
-	"custom-validation/validation"
-
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/kmacute/golvalidator"
 )
 
 func main() {
+	// database.Connect()
+
 	app := fiber.New()
 
 	app.Get("/", Test)
 
-	app.Listen(":3000")
+	app.Listen(":3002")
 }
 
 type UserType struct {
@@ -50,7 +50,7 @@ func Test(c *fiber.Ctx) error {
 		MiddleName: "3",
 	}
 
-	errors := validation.ValidateStructs(user)
+	errors := golvalidator.ValidateStructs(user)
 	if len(errors) > 0 {
 		return c.JSON(fiber.Map{
 			"errors": errors,
@@ -59,6 +59,7 @@ func Test(c *fiber.Ctx) error {
 
 	return c.SendString("No Errors")
 }
+
 ```
 
 ### Errors
