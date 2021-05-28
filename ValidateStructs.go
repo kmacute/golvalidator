@@ -281,7 +281,7 @@ func validate(validation []string, v reflect.Value, fieldValue interface{}, fiel
 
 		secondFieldValue := refl.FieldByName(ToCamel(validation[1])).Interface()
 		if secondFieldValue != "" {
-			return localType, fmt.Sprintf("The %s field is required when %s is present.", RemoveUnderscore(fieldName), RemoveUnderscore(validation[0]))
+			return localType, fmt.Sprintf("The %s field is required when %s is present.", RemoveUnderscore(fieldName), RemoveUnderscore(validation[1]))
 		}
 
 	case "ip":
