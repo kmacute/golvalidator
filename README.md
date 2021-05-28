@@ -23,10 +23,8 @@ import "github.com/kmacute/golvalidator"
 package main
 
 import (
-	"custom-validation/validation"
-
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/kmacute/golvalidator"
 )
 
 func main() {
@@ -34,7 +32,7 @@ func main() {
 
 	app.Get("/", Test)
 
-	app.Listen(":3000")
+	app.Listen(":3002")
 }
 
 type UserType struct {
@@ -50,7 +48,7 @@ func Test(c *fiber.Ctx) error {
 		MiddleName: "3",
 	}
 
-	errors := validation.ValidateStructs(user)
+	errors := golvalidator.ValidateStructs(user)
 	if len(errors) > 0 {
 		return c.JSON(fiber.Map{
 			"errors": errors,
@@ -59,6 +57,7 @@ func Test(c *fiber.Ctx) error {
 
 	return c.SendString("No Errors")
 }
+
 ```
 
 ### Errors
@@ -66,7 +65,7 @@ func Test(c *fiber.Ctx) error {
 {
     "errors": {
         "first_name": [
-            "The first name field is required when required with is present."
+            "The first name field is required when last name is present."
         ],
         "last_name": [
             "The last name must only contain letters.",
@@ -82,6 +81,7 @@ func Test(c *fiber.Ctx) error {
 ```
 
 ### Available Validation
+```
 alpha
 string
 numeric
@@ -111,5 +111,11 @@ ipv4
 ipv6
 url
 credit_card
+```
 
 ### Pending
+```
+Unique -> (Gorm Dependency)
+File Size
+File Extension
+```
